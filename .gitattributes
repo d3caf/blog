@@ -1,0 +1,2 @@
+lib/paddling/posts/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+lib/paddling/posts/**/*.png filter=lfs diff=lfs merge=lfs -text

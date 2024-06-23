@@ -1,0 +1,29 @@
+<header>
+  <div>
+    <div class="flex items-center gap-4">
+      <a href="/">
+        <img src={~p"/images/logo.svg"} width="36" />
+      </a>
+      <p>
+        v<%= Application.spec(:phoenix, :vsn) %>
+      </p>
+    </div>
+    <div>
+      <a href="https://twitter.com/elixirphoenix">
+        @elixirphoenix
+      </a>
+      <a href="https://github.com/phoenixframework/phoenix">
+        GitHub
+      </a>
+      <a href="https://hexdocs.pm/phoenix/overview.html">
+        Get Started <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</header>
+<main>
+  <div>
+    <.flash_group flash={@flash} />
+    <%= @inner_content %>
+  </div>
+</main>
