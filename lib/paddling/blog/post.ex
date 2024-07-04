@@ -1,14 +1,16 @@
 defmodule Paddling.Blog.Post do
   alias __MODULE__.Rating
 
-  @keys ~w(ratings content)a
-  @enforce_keys @keys
-  defstruct @keys
+  @required_keys ~w(content category slug)a
+  @enforce_keys @required_keys
+  defstruct ~w(metadata)a ++ @required_keys
 
   @type t() ::
           %__MODULE__{
             content: binary(),
-            ratings: Rating.t()
+            metadata: map(),
+            category: binary(),
+            slug: binary()
           }
 
   @spec parse!(binary()) :: %__MODULE__{}
@@ -20,9 +22,12 @@ defmodule Paddling.Blog.Post do
     parsed_meta = parse_meta!(meta)
 
     %__MODULE__{
-      ratings: parsed_meta |> Map.get("ratings") |> Rating.to_struct!(),
+      slug: Path.basename(filename, ".md"),
+      category: parsed_meta |> Map.get("category"),
+      metadata: parsed_meta |> Map.get("metadata"),
       content: content |> Enum.at(0) |> parse_content!()
     }
+    |> IO.inspect()
   end
 
   defp parse_meta!(meta) do
@@ -38,6 +43,9 @@ defmodule Paddling.Blog.Post do
   end
 
   defmodule Rating do
+    @moduledoc """
+    Deprecated?
+    """
     @keys ~w(scenery difficulty access wildlife uniqueness privacy wpa)a
     @enforce_keys @keys
     defstruct @keys

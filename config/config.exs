@@ -8,7 +8,12 @@
 import Config
 
 config :paddling,
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  image_bucket_name: "paddling-pics"
+
+config :ex_aws, :s3,
+  scheme: "https://",
+  host: "fly.storage.tigris.dev"
 
 # Configures the endpoint
 config :paddling, PaddlingWeb.Endpoint,

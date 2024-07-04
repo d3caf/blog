@@ -18,6 +18,7 @@ defmodule PaddlingWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/blog/:year/:slug", BlogController, :post
   end
 
   # Other scopes may use custom stacks.

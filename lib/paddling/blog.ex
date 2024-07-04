@@ -15,7 +15,8 @@ defmodule Paddling.Blog do
       Post.parse!(post_path)
     end
 
-  @posts posts
+  @posts posts |> IO.inspect()
 
   def list_posts(), do: @posts
+  def get_post(slug), do: Enum.find(@posts, &match?(%{slug: ^slug}, &1))
 end
